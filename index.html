@@ -1,0 +1,119 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Entre Linhas & Memórias</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+<div id="app">
+  <div class="decor one"></div>
+  <div class="decor two"></div>
+
+  <header>
+    <div class="topline">
+      <div class="brand">
+        <div class="brand-mark">&</div>
+        arquivo pessoal
+      </div>
+      <div class="top-note">textos · lembranças · histórias</div>
+    </div>
+
+    <section class="hero">
+      <div>
+        <div class="eyebrow">Um espaço para guardar o que importa</div>
+        <h1>Entre linhas<br>& <em>memórias.</em></h1>
+        <p>
+          Um cantinho para reunir ideias que ganharam forma em palavras
+          e momentos que merecem continuar vivos. Cada texto, cada
+          fotografia, um pedacinho da minha história.
+        </p>
+      </div>
+
+      <div class="hero-art">
+        <div class="paper back"></div>
+        <div class="paper">
+          <div class="eyebrow">meu arquivo</div>
+          <div class="scribble">Histórias que<br>ficam com a gente.</div>
+          <div class="lines"></div>
+          <div class="stamp">✳</div>
+        </div>
+      </div>
+    </section>
+  </header>
+
+  <main>
+    <nav class="tabs">
+      <button class="tab active" data-view="essays">✎ &nbsp; Redações</button>
+      <button class="tab" data-view="memories">♡ &nbsp; Memórias escolares</button>
+    </nav>
+
+    <section id="essays-view">
+      <div class="section-head">
+        <div>
+          <h2>Minhas redações</h2>
+          <p>Textos organizados por tema.</p>
+        </div>
+        <button class="add-btn" id="add-essay">＋ Nova redação</button>
+      </div>
+      <div class="essay-grid" id="essay-grid"></div>
+    </section>
+
+    <section id="memories-view" hidden>
+      <div class="section-head">
+        <div>
+          <div class="eyebrow">Pequenos grandes momentos</div>
+          <h2>Memórias escolares</h2>
+          <p>Uma coleção de fases, conquistas, pessoas e experiências.</p>
+        </div>
+        <button class="add-btn" id="add-memory">＋ Guardar memória</button>
+      </div>
+
+      <div class="memory-grid" id="memory-grid"></div>
+
+      <div class="timeline">
+        <h3>Uma história em capítulos</h3>
+        <div class="timeline-row">
+          <strong>Começos</strong>
+          <span>Novas amizades, descobertas e os primeiros projetos.</span>
+        </div>
+        <div class="timeline-row">
+          <strong>Aprendizados</strong>
+          <span>Trabalhos, apresentações, desafios e experiências que ensinaram muito.</span>
+        </div>
+        <div class="timeline-row">
+          <strong>Conquistas</strong>
+          <span>Resultados, celebrações e momentos que deram orgulho.</span>
+        </div>
+        <div class="timeline-row">
+          <strong>Até aqui</strong>
+          <span>Um ciclo cheio de histórias — e muitos capítulos pela frente.</span>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer>
+    Feito com carinho, para que nada importante se perca.
+    <span>♡</span>
+  </footer>
+</div>
+
+<div class="modal" id="modal" role="dialog" aria-modal="true">
+  <div class="modal-box">
+    <div class="modal-top">
+      <h3 id="modal-title">Adicionar ao arquivo</h3>
+      <button class="close" id="close-modal">×</button>
+    </div>
+
+    <form id="entry-form">
+      <div id="form-fields"></div>
+      <button class="save" type="submit">Salvar no meu arquivo</button>
+    </form>
+  </div>
+</div>
+
+<script src="script.js"></script>
+</body>
+</html>
