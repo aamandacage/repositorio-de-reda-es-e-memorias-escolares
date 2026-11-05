@@ -1,0 +1,254 @@
+const initialEssays = [
+  {
+    title: 'Migração e acolhimento: desafios da convivência em contextos globais',
+    year: '2026',
+    body: 'Insira aqui a versão completa da sua redação.'
+  },
+  {
+    title: 'Espécies em extinção e equilíbrio ecológico',
+    year: '2026',
+    body: 'Insira aqui a versão completa da sua redação.'
+  },
+  {
+    title: 'A importância da educação na transformação social',
+    year: '2026',
+    body: 'Insira aqui a versão completa da sua redação.'
+  }
+];
+
+const initialMemories = [
+  {
+    title: 'Projetos e trabalhos',
+    date: 'Um ano de descobertas',
+    desc: 'Apresentações, pesquisas e ideias que saíram do papel.',
+    symbol: '✎',
+    tone: 'c1'
+  },
+  {
+    title: 'Amizades que ficam',
+    date: 'Pessoas especiais',
+    desc: 'Os encontros e as risadas que fizeram parte da caminhada.',
+    symbol: '♡',
+    tone: 'c2'
+  },
+  {
+    title: 'Eventos escolares',
+    date: 'Momentos marcantes',
+    desc: 'Dias diferentes, experiências novas e muita história para contar.',
+    symbol: '✳',
+    tone: 'c3'
+  },
+  {
+    title: 'Conquistas',
+    date: 'Motivos para celebrar',
+    desc: 'Cada pequena vitória que merece ser lembrada.',
+    symbol: '☆',
+    tone: 'c4'
+  },
+  {
+    title: 'Bastidores',
+    date: 'Entre uma aula e outra',
+    desc: 'Os detalhes espontâneos que também fazem a história.',
+    symbol: '❀',
+    tone: 'c5'
+  },
+  {
+    title: 'Último capítulo?',
+    date: 'Uma fase inesquecível',
+    desc: 'Memórias de um ciclo que sempre vai ter um lugar especial.',
+    symbol: '∞',
+    tone: 'c6'
+  }
+];
+
+let essays = [...initialEssays];
+let memories = [...initialMemories];
+let currentType = 'essay';
+
+const essayGrid = document.getElementById('essay-grid');
+const memoryGrid = document.getElementById('memory-grid');
+const modal = document.getElementById('modal');
+const fields = document.getElementById('form-fields');
+
+function escapeHtml(s = '') {
+  return String(s).replace(/[&<>"']/g, c => ({
+    '&': '&amp;',
+    '<': '&lt;',
+    '>': '&gt;',
+    '"': '&quot;',
+    "'": '&#39;'
+  }[c]));
+}
+
+function renderEssays() {
+  essayGrid.innerHTML = essays.length
+    ? essays.map((e, i) => `
+      <article class="essay-card">
+        <div class="card-meta">
+          <span class="year">${escapeHtml(e.year)}</span>
+        </div>
+        <h3>${escapeHtml(e.title)}</h3>
+        <div class="card-bottom">
+          <button class="read-link" data-essay="${i}">
+            Abrir redação ↗
+          </button>
+        </div>
+      </article>
+    `).join('')
+    : '<div class="empty">Nenhuma redação adicionada ainda.</div>';
+
+  essayGrid.querySelectorAll('[data-essay]').forEach(button => {
+    button.addEventListener('click', () => {
+      showEssay(essays[Number(button.dataset.essay)]);
+    });
+  });
+}
+
+function renderMemories() {
+  memoryGrid.innerHTML = memories.map((m, i) => `
+    <article class="memory-card">
+      <div class="memory-cover ${m.tone || 'c1'}">
+        <span class="symbol">${escapeHtml(m.symbol || '♡')}</span>
+        <span class="cover-label">${escapeHtml(m.date)}</span>
+      </div>
+      <div class="memory-info">
+        <h3>${escapeHtml(m.title)}</h3>
+        <p>${escapeHtml(m.desc)}</p>
+        <span class="memory-date">
+          Memória ${String(i + 1).padStart(2, '0')}
+        </span>
+      </div>
+    </article>
+  `).join('');
+}
+
+function showEssay(essay) {
+  document.getElementById('modal-title').textContent = essay.title;
+
+  fields.innerHTML = `
+    <div class="detail-text">
+      ${escapeHtml(essay.body || '')}
+    </div>
+  `;
+
+  document.querySelector('.save').hidden = true;
+  modal.classList.add('open');
+}
+
+function openForm(type) {
+  currentType = type;
+
+  document.querySelector('.save').hidden = false;
+
+  document.getElementById('modal-title').textContent =
+    type === 'essay' ? 'Nova redação' : 'Nova memória';
+
+  fields.innerHTML = type === 'essay'
+    ? `
+      <div class="field">
+        <label for="title">Título</label>
+        <input id="title" required placeholder="Tema da redação">
+      </div>
+
+      <div class="field">
+        <label for="year">Ano</label>
+        <input id="year" value="2026">
+      </div>
+
+      <div class="field">
+        <label for="body">Texto completo</label>
+        <textarea id="body"
+          placeholder="Escreva ou cole sua redação aqui..."></textarea>
+      </div>
+    `
+    : `
+      <div class="field">
+        <label for="title">Nome da memória</label>
+        <input id="title" required placeholder="Ex.: Feira de ciências">
+      </div>
+
+      <div class="field">
+        <label for="date">Data ou período</label>
+        <input id="date" placeholder="Ex.: Outubro de 2026">
+      </div>
+
+      <div class="field">
+        <label for="desc">Descrição</label>
+        <textarea id="desc"
+          placeholder="Conte um pouquinho sobre esse momento..."></textarea>
+      </div>
+
+      <div class="field">
+        <label for="symbol">Símbolo</label>
+        <select id="symbol">
+          <option>♡</option>
+          <option>✎</option>
+          <option>☆</option>
+          <option>✳</option>
+          <option>❀</option>
+          <option>∞</option>
+        </select>
+      </div>
+    `;
+
+  modal.classList.add('open');
+}
+
+document.getElementById('entry-form').addEventListener('submit', event => {
+  event.preventDefault();
+
+  const get = id => document.getElementById(id)?.value || '';
+
+  if (currentType === 'essay') {
+    essays.unshift({
+      title: get('title'),
+      year: get('year'),
+      body: get('body')
+    });
+
+    renderEssays();
+  } else {
+    memories.unshift({
+      title: get('title'),
+      date: get('date') || 'Uma lembrança',
+      desc: get('desc'),
+      symbol: get('symbol'),
+      tone: ['c1', 'c2', 'c3', 'c4', 'c5', 'c6'][memories.length % 6]
+    });
+
+    renderMemories();
+  }
+
+  modal.classList.remove('open');
+});
+
+document.getElementById('add-essay')
+  .addEventListener('click', () => openForm('essay'));
+
+document.getElementById('add-memory')
+  .addEventListener('click', () => openForm('memory'));
+
+document.getElementById('close-modal')
+  .addEventListener('click', () => modal.classList.remove('open'));
+
+modal.addEventListener('click', event => {
+  if (event.target === modal) {
+    modal.classList.remove('open');
+  }
+});
+
+document.querySelectorAll('.tab').forEach(tab => {
+  tab.addEventListener('click', () => {
+    document.querySelectorAll('.tab').forEach(item => {
+      item.classList.toggle('active', item === tab);
+    });
+
+    const essaysOn = tab.dataset.view === 'essays';
+
+    document.getElementById('essays-view').hidden = !essaysOn;
+    document.getElementById('memories-view').hidden = essaysOn;
+  });
+});
+
+renderEssays();
+renderMemories();
