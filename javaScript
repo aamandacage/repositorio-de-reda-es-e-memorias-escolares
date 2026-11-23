@@ -2,17 +2,41 @@ const initialEssays = [
   {
     title: 'Migração e acolhimento: desafios da convivência em contextos globais',
     year: '2026',
-    body: 'Insira aqui a versão completa da sua redação.'
+
+    original: `A Constituição Federal de 1988 garante direitos fundamentais à população, como moradia, saúde, educação e segurança. No entanto, a realidade de muitos imigrantes se distancia dessas garantias, visto que a xenofobia e a falta de assistência dificultam sua adaptação ao novo país, esse cenário acontece devido a negligência estatal.
+
+Diante desse cenário, a xenofobia representa um obstáculo para o acolhimento dos imigrante. Isso ocorre porque muitas pessoas são discriminadas por sua nacionalidade, cultura ou idioma, o que difilculta sua integração na sociedade. Como consequência, esses indivíduos enfrentam difilculdades para construir relações sociais e encontrar oportunidades de trabalho. Dessa forma, a falta de respeito às diferenças contribui para a exclusão social e para a permanência desse problema.
+
+Ademais, a negligência estatal agrava os desafios enfrentados pelos migrantes. Embora a Constituição Federal assegure direitos fundamentais, muitos imigrantes encontram dificuldades para acessar serviços básicos, como saúde, educação e moradia. Nesse contexto, a ausência de medidas eficientes de acolhimento impede que essas pessoas reconstruam suas vidas com dignidade, tornando necessária uma atuação mais efetiva do poder público.
+
+Portanto, é necessário combater os desafios da migração e garantir o acolhimento adequado aos imigrantes. Para isso, o Governo Federal, em parceria com as escolas e os meios de comunicação, deve promover campanhas de consientização contra a xenofobia e ampliar o acesso dos migrantes aos serviços básicos, por meio de ações educativas e programas de assistência social. Assim, será possível aproximar a realidade dos direitos garantidos pela Constituição Federal, promovendo a dignidade humana e uma convivência mais respeitosa entre diferentes culturas.`,
+
+    originalScore: 880,
+    originalCompetencies: [200, 160, 160, 160, 200],
+
+    revised: '',
+    revisedScore: '',
+    revisedCompetencies: []
   },
   {
     title: 'Espécies em extinção e equilíbrio ecológico',
     year: '2026',
-    body: 'Insira aqui a versão completa da sua redação.'
+    original: '',
+    originalScore: 840,
+    originalCompetencies: [160, 160, 160, 160, 200],
+    revised: '',
+    revisedScore: '',
+    revisedCompetencies: []
   },
   {
     title: 'A importância da educação na transformação social',
     year: '2026',
-    body: 'Insira aqui a versão completa da sua redação.'
+    original: '',
+    originalScore: '',
+    originalCompetencies: [],
+    revised: '',
+    revisedScore: '',
+    revisedCompetencies: []
   }
 ];
 
